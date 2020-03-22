@@ -1,0 +1,71 @@
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->
+<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
+<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * Delete the template below * * * * * * * * * * -->
+<!-- * * * * * * * to get started with your project! * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<div class="container">
+  <div class="submit">
+    <h1>New Task</h1>
+    <form (submit)="postToServer()">
+      <p> {{ newTask | json }} </p>
+      <input type="text" name="newTask.title" [(ngModel)]="newTask.title">
+      <input type="text" name="newTask.description" [(ngModel)]="newTask.description">
+      <input type="submit" value="Create Task">
+    </form>
+    
+    <hr>
+    
+  </div>
+  <div class="list">
+    <h1>Task List</h1>
+      <table>
+        <tr *ngFor='let task of tasks'>
+          <div class="dislpayBox">
+            <p><td>{{task._id}}</td></p>
+            <p><td>{{task.title}}</td></p>
+            <p><td>{{task.description}}</td></p>
+          </div>
+            <button (click)='showTask(task._id)'>Edit Task</button>
+            <button (click)='deleteTask(task._id)'>Delete Task</button>
+        </tr>
+      </table>
+  </div>
+  <hr>
+  <div *ngIf="show_task">
+    <h6>{{show_task.title}}</h6>
+    <h6>{{show_task.description}}</h6>
+    <form (submit)="updateTask(show_task._id)">
+      <input type="text" name="show_task.title" [(ngModel)]="show_task.title">
+      <input type="text" name="show_task.description" [(ngModel)]="show_task.description">
+      <input type="submit" value="Update Task">
+    </form>
+  </div>
+  
+</div>
+
+</body>
+</html>
+
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * The content above * * * * * * * * * * * -->
+<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
+<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * End of Placeholder * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+
+
+
+<router-outlet></router-outlet>
